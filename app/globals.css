@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* Custom Font Faces - Using the actual font files provided */
+/* Recoleta Sans Bold for headings */
+@font-face {
+  font-family: 'Recoleta Sans';
+  src: url('/fonts/Recoleta Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sofia Pro Light for body text */
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url('/fonts/Sofia Pro Light Az.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sofia Pro Regular for normal text */
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url('/fonts/Sofia Pro Regular Az.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sofia Pro Bold for buttons and emphasis */
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url('/fonts/Sofia Pro Bold Az.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font utility classes */
+.font-recoleta {
+  font-family: 'Recoleta Sans', Georgia, serif;
+}
+
+.font-sofia {
+  font-family: 'Sofia Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Surenitea Brand Colors */
+  --color-surenitea-50: #F2F8F8;
+  --color-surenitea-100: #D9E8E8;
+  --color-surenitea-200: #B3D1D1;
+  --color-surenitea-300: #8CBABA;
+  --color-surenitea-400: #66A3A3;
+  --color-surenitea-500: #408C8C;
+  --color-surenitea-600: #337070;
+  --color-surenitea-700: #005151;
+  --color-surenitea-800: #003939;
+  --color-surenitea-900: #002121;
+  
+  --color-peach: #FFC69A;
+  --color-coral: #E8927C;
+  
+  /* Font families */
+  --font-family-recoleta: 'Recoleta Sans', Georgia, serif;
+  --font-family-sofia: 'Sofia Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Global styles */
+body {
+  font-family: var(--font-family-sofia);
+  font-weight: 300;
+  color: var(--color-surenitea-700);
+  background: var(--background);
+}
+
+h1, h2 {
+  font-family: var(--font-family-recoleta);
+  font-weight: 700;
+}
+
+/* Hero video fixes */
+.hero-video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* Ensure header doesn't interfere with hero */
+.hero-section {
+  margin-top: -64px; /* Negative margin to account for fixed header */
+  padding-top: 64px;
+}
+
+/* Success toast animation */
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-toast-enter {
+  animation: toast-enter 0.3s ease-out;
+}
+
+/* Button styles */
+.btn-primary {
+  font-family: var(--font-family-sofia);
+  font-weight: 700;
+  background-color: var(--color-coral);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-surenitea-700);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 81, 81, 0.2);
+}
+
+.btn-secondary {
+  font-family: var(--font-family-sofia);
+  font-weight: 700;
+  background-color: var(--color-surenitea-700);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surenitea-800);
+}
+
+/* Card hover effects */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 81, 81, 0.1);
+}
+
+/* Custom animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.3s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
