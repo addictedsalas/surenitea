@@ -6,8 +6,15 @@ import FloatingSocialBar from "@/components/FloatingSocialBar";
 import { CartProvider } from "@/contexts/CartContext";
 
 export const metadata: Metadata = {
-  title: "Surenitea - Premium Tea Collection",
+  title: "Surenitea",
   description: "Experience the perfect blend of tranquility and taste with our premium tea collection",
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
