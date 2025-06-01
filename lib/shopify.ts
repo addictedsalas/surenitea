@@ -368,6 +368,107 @@ const ADD_TO_CART_MUTATION = `
   }
 `;
 
+const GET_CART_QUERY = `
+  query getCart($cartId: ID!) {
+    cart(id: $cartId) {
+      id
+      checkoutUrl
+      totalQuantity
+      lines(first: 100) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                priceV2 {
+                  amount
+                  currencyCode
+                }
+                product {
+                  id
+                  title
+                  handle
+                  featuredImage {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
+`;
+
+const UPDATE_LINE_ITEM_MUTATION = `
+  mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+    cartLinesUpdate(cartId: $cartId, lines: $lines) {
+      cart {
+        id
+        checkoutUrl
+        totalQuantity
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const REMOVE_LINE_ITEM_MUTATION = `
+  mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      cart {
+        id
+        checkoutUrl
+        totalQuantity
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 // API Functions
 export async function getProducts(first: number = 20): Promise<Product[]> {
   // Use mock data if Shopify is not configured
@@ -455,6 +556,66 @@ export async function addLinesToCart(cartId: string, lines: Array<{ merchandiseI
     return data.cartLinesAdd.cart;
   } catch (error) {
     console.error('Error adding to cart:', error);
+    throw error;
+  }
+}
+
+export async function getCart(cartId: string) {
+  try {
+    const { data, errors } = await client.request(GET_CART_QUERY, {
+      variables: { cartId },
+    });
+
+    if (errors) {
+      console.error('GraphQL errors:', errors);
+      throw new Error('Failed to fetch cart');
+    }
+
+    return data.cart;
+  } catch (error) {
+    console.error('Error fetching cart:', error);
+    throw error;
+  }
+}
+
+export async function updateLineItem(cartId: string, lineId: string, quantity: number) {
+  try {
+    const { data, errors } = await client.request(UPDATE_LINE_ITEM_MUTATION, {
+      variables: {
+        cartId,
+        lines: [{ id: lineId, quantity }],
+      },
+    });
+
+    if (errors) {
+      console.error('GraphQL errors:', errors);
+      throw new Error('Failed to update cart item');
+    }
+
+    return data.cartLinesUpdate.cart;
+  } catch (error) {
+    console.error('Error updating cart item:', error);
+    throw error;
+  }
+}
+
+export async function removeLineItem(cartId: string, lineId: string) {
+  try {
+    const { data, errors } = await client.request(REMOVE_LINE_ITEM_MUTATION, {
+      variables: {
+        cartId,
+        lineIds: [lineId],
+      },
+    });
+
+    if (errors) {
+      console.error('GraphQL errors:', errors);
+      throw new Error('Failed to remove cart item');
+    }
+
+    return data.cartLinesRemove.cart;
+  } catch (error) {
+    console.error('Error removing cart item:', error);
     throw error;
   }
 }
