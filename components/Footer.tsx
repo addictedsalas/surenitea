@@ -54,34 +54,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Shop Links */}
+          {/* Store Hours */}
           <div>
-            <h3 className="font-recoleta text-lg mb-6 text-white">Shop</h3>
-            <ul className="space-y-3">
+            <h3 className="font-recoleta text-lg mb-6 text-white">Store Hours</h3>
+            <ul className="space-y-3 text-white/70 font-sofia font-light">
               <li>
-                <Link href="/shop" className="text-white/70 hover:text-white font-sofia font-light transition-colors duration-200">
-                  All Teas
-                </Link>
+                <span className="block">Monday - Thursday</span>
+                <span className="text-white">11am - 10:30pm</span>
               </li>
               <li>
-                <Link href="/shop/green-tea" className="text-white/70 hover:text-white font-sofia font-light transition-colors duration-200">
-                  Green Tea
-                </Link>
+                <span className="block">Friday</span>
+                <span className="text-white">11am - 1am 🧪</span>
               </li>
               <li>
-                <Link href="/shop/black-tea" className="text-white/70 hover:text-white font-sofia font-light transition-colors duration-200">
-                  Black Tea
-                </Link>
+                <span className="block">Saturday</span>
+                <span className="text-white">1pm - 1am 🍄‍🟫</span>
               </li>
               <li>
-                <Link href="/shop/herbal-tea" className="text-white/70 hover:text-white font-sofia font-light transition-colors duration-200">
-                  Herbal Tea
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop/gift-sets" className="text-white/70 hover:text-white font-sofia font-light transition-colors duration-200">
-                  Gift Sets
-                </Link>
+                <span className="block">Sunday</span>
+                <span className="text-white">1pm - 12am</span>
               </li>
             </ul>
           </div>
@@ -180,9 +171,15 @@ export default function Footer() {
       <div className="border-t border-white/10" style={{ backgroundColor: 'var(--color-surenitea-800)' }}>
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/60 text-sm font-sofia font-light mb-4 md:mb-0">
-              &copy; {currentYear} Surenitea. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 mb-4 md:mb-0">
+              <p className="text-white/60 text-sm font-sofia font-light">
+                &copy; {currentYear} Surenitea. All rights reserved.
+              </p>
+              <span className="hidden md:inline text-white/40">•</span>
+              <p className="text-white/60 text-sm font-sofia font-light">
+                Created by <a href="https://boringprojects.co" target="_blank" rel="noopener noreferrer" className="text-coral hover:text-peach transition-colors duration-200">boringprojects.co</a>
+              </p>
+            </div>
             <div className="flex flex-wrap gap-6 text-sm">
               <Link href="/privacy" className="text-white/60 hover:text-white font-sofia font-light transition-colors duration-200">
                 Privacy Policy
