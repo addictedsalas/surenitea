@@ -22,6 +22,7 @@ export default function Header() {
 
   const navLinks = [
     { href: '/shop', label: 'Shop', hasDropdown: true },
+    { href: '/menu', label: 'Menu' },
     { href: '/learn', label: 'Learn' },
     { href: '/our-bar', label: 'Our Bar' },
     { href: '/contact', label: 'Contact' },
