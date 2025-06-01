@@ -14,19 +14,18 @@ export default function FeaturedProducts({
   subtitle = "Discover our carefully curated selection of premium teas from around the world"
 }: FeaturedProductsProps) {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background with gradient and pattern - using explicit colors to prevent dark mode issues */}
+    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
+      {/* Background with gradient - using a subtle overlay approach */}
       <div className="absolute inset-0" style={{ 
-        background: 'linear-gradient(135deg, #FFCBA4 0%, #FFF5F0 50%, #FFB5A7 100%)',
-        opacity: 0.15
+        background: 'linear-gradient(135deg, rgba(255, 203, 164, 0.15) 0%, rgba(255, 245, 240, 0.15) 50%, rgba(255, 181, 167, 0.15) 100%)'
       }} />
       
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
-        <div className="w-full h-full rounded-full" style={{ backgroundColor: 'var(--color-coral)' }} />
+      <div className="absolute top-0 right-0 w-64 h-64">
+        <div className="w-full h-full rounded-full" style={{ backgroundColor: '#FFB5A7', opacity: 0.1 }} />
       </div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 opacity-10">
-        <div className="w-full h-full rounded-full" style={{ backgroundColor: 'var(--color-peach)' }} />
+      <div className="absolute bottom-0 left-0 w-96 h-96">
+        <div className="w-full h-full rounded-full" style={{ backgroundColor: '#FFCBA4', opacity: 0.1 }} />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
