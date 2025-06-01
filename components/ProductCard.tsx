@@ -18,38 +18,48 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
   const firstVariant = product.variants.edges[0]?.node;
 
   return (
-    <div className="bg-surenitea-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-transparent hover:border-coral">
+    <div className="rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100" style={{ backgroundColor: 'var(--color-surenitea-50)' }}>
       {product.featuredImage && (
-        <div className="relative h-64 w-full">
+        <div className="relative aspect-square w-full bg-gray-100">
           <Image
             src={product.featuredImage.url}
             alt={product.featuredImage.altText || product.title}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
       )}
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-surenitea-700 mb-2 font-recoleta">
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2 font-recoleta" style={{ color: 'var(--color-surenitea-700)' }}>
           {product.title}
         </h3>
-        <p className="text-surenitea-700 mb-4 text-sm line-clamp-2">
+        <p className="mb-4 text-sm line-clamp-2 font-sofia" style={{ color: 'var(--color-surenitea-600)' }}>
           {product.description}
         </p>
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-surenitea-700">
+          <span className="text-2xl font-bold" style={{ color: 'var(--color-surenitea-700)' }}>
             {formattedPrice}
           </span>
           {product.availableForSale && firstVariant ? (
             <button
               onClick={() => onAddToCart(firstVariant.id)}
-              className="bg-coral text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors duration-200 font-sofia font-bold text-sm"
+              className="px-6 py-3 rounded-md transition-all duration-200 font-sofia font-bold text-sm transform hover:scale-105 shadow-md"
+              style={{ 
+                backgroundColor: 'var(--color-coral)',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-surenitea-700)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-coral)';
+              }}
             >
               Add to Cart
             </button>
           ) : (
-            <span className="text-surenitea-700 opacity-50 font-sofia">
+            <span className="opacity-50 font-sofia" style={{ color: 'var(--color-surenitea-700)' }}>
               Sold Out
             </span>
           )}

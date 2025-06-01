@@ -1,4 +1,7 @@
-import Link from 'next/link';
+'use client';
+
+import Link from  'next/link';
+import Image from 'next/image';
 
 interface BrandStoryProps {
   title?: string;
@@ -17,13 +20,13 @@ export default function BrandStory({
   ],
   linkText = "Learn More About Us",
   linkHref = "/about",
-  imageSrc = "https://images.unsplash.com/photo-1587888637140-849b25d80ef9?w=800",
-  imageAlt = "Tea plantation"
+  imageSrc = "/Instant-and-Ground-kava.png",
+  imageAlt = "Instant and Ground Kava"
 }: BrandStoryProps) {
   return (
     <section className="py-24 relative overflow-hidden" style={{ backgroundColor: 'var(--color-surenitea-700)' }}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920')] bg-cover bg-center opacity-10"></div>
+      <div className="absolute inset-0 bg-[url('/p-banner.png')] bg-cover bg-center opacity-80"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -49,9 +52,11 @@ export default function BrandStory({
           </div>
           <div className="relative">
             <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden shadow-2xl">
-              <img 
+              <Image 
                 src={imageSrc}
                 alt={imageAlt}
+                width={800}
+                height={600}
                 className="w-full h-full object-cover"
               />
             </div>

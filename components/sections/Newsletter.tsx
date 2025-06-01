@@ -23,8 +23,12 @@ export default function Newsletter({
   };
 
   return (
-    <section className="py-24" style={{ background: 'linear-gradient(135deg, var(--color-peach), var(--color-coral))' }}>
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden">
+      {/* Background Banner Image */}
+      <div className="absolute inset-0 bg-[url('/kava-banner.png')] bg-cover bg-center opacity-70 z-0"></div>
+      {/* Optional: overlay for extra contrast */}
+      <div className="absolute inset-0 bg-gradient-to-br from-peach/60 to-coral/70 z-10"></div>
+      <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-light text-white mb-6 font-recoleta">
             {title}
@@ -44,7 +48,10 @@ export default function Newsletter({
             />
             <button
               type="submit"
-              className="bg-surenitea text-white px-8 py-4 rounded-md hover:bg-surenitea-800 transition-all duration-200 font-sofia font-bold transform hover:scale-105 shadow-lg"
+              className="px-8 py-4 rounded-full font-sofia font-bold text-white transition-all duration-300 transform hover:scale-105 shadow-lg"
+              style={{ 
+                backgroundColor: 'var(--color-coral)'
+              }}
             >
               {buttonText}
             </button>

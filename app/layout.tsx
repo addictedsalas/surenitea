@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { CartProvider } from "@/contexts/CartContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingSocialBar from "@/components/FloatingSocialBar";
+import { CartProvider } from "@/contexts/CartContext";
 
 export const metadata: Metadata = {
   title: "Surenitea - Premium Tea Collection",
-  description: "Discover the finest selection of premium teas from around the world",
+  description: "Experience the perfect blend of tranquility and taste with our premium tea collection",
 };
 
 export default function RootLayout({
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className="antialiased">
         <CartProvider>
           <Header />
+          <FloatingSocialBar />
           <main className="min-h-screen">{children}</main>
           <Footer />
         </CartProvider>

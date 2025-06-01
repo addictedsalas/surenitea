@@ -4,6 +4,8 @@ import FeaturedProducts from '@/components/sections/FeaturedProducts';
 import BrandStory from '@/components/sections/BrandStory';
 import Newsletter from '@/components/sections/Newsletter';
 import InstagramGallery from '@/components/sections/InstagramGallery';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import OrderNowSection from '@/components/sections/OrderNowSection';
 
 export default async function HomePage() {
   // Get featured products (first 3 to match the store)
@@ -25,11 +27,25 @@ export default async function HomePage() {
       {/* Brand Story Section */}
       <BrandStory />
 
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* Order Now Section */}
+      <OrderNowSection />
+
       {/* Newsletter Section */}
       <Newsletter />
 
       {/* Instagram Gallery Section */}
-      <InstagramGallery />
+      <InstagramGallery 
+        instagramPosts={[
+          // Replace these with actual Instagram post URLs from @surenitea_official
+          // Format: "https://www.instagram.com/p/POST_ID/"
+          "https://www.instagram.com/p/DJ_9BHLOhlJ/",
+          "https://www.instagram.com/p/DJ73te1OUny/",
+          "https://www.instagram.com/p/DJsUpm7OTnB/",
+        ]}
+      />
     </div>
   );
 }

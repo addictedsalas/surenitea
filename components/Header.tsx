@@ -22,10 +22,9 @@ export default function Header() {
 
   const navLinks = [
     { href: '/shop', label: 'Shop', hasDropdown: true },
-    { href: '/about', label: 'Our Story' },
-    { href: '/sustainability', label: 'Sustainability' },
-    { href: '/blog', label: 'Tea Blog' },
-    { href: '/locations', label: 'Locations' },
+    { href: '/learn', label: 'Learn' },
+    { href: '/our-bar', label: 'Our Bar' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (

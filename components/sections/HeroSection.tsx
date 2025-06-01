@@ -13,7 +13,7 @@ export default function HeroSection({
   subtitle, 
   buttonText, 
   buttonLink,
-  videoSrc = "/hero_video.mp4"
+  videoSrc = "/tea-hero.mp4"
 }: HeroSectionProps) {
   return (
     <section className="hero-section relative h-screen w-full overflow-hidden">
@@ -51,8 +51,22 @@ export default function HeroSection({
         </div>
       </div>
 
+      {/* Bottom Text Section */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/60 to-transparent pb-12 pt-20">
+        <div className="container mx-auto px-8 md:px-12 lg:px-16">
+          <div className="max-w-2xl text-left">
+            <h2 className="mb-3 text-3xl font-bold text-white drop-shadow-lg md:text-4xl lg:text-5xl">
+              GREAT TEA. NO BS.
+            </h2>
+            <p className="text-lg text-white/80 drop-shadow-md md:text-xl">
+              Pure ingredients. Honest flavors. Simply exceptional.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
+      <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 animate-bounce text-white">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
