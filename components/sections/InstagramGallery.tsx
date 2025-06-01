@@ -11,7 +11,7 @@ export default function InstagramGallery({
   title = "Follow Us @surenitea",
   subtitle = "Join our tea-loving community"
 }: InstagramGalleryProps) {
-  const instagramUrl = "https://www.instagram.com/surenitea/";
+  const instagramUrl = "https://www.instagram.com/surenitea_official/";
   
   const placeholderPosts = [
     { id: 1, image: '/igpost1.png', alt: 'Surenitea Instagram Post 1' },

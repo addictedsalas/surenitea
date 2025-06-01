@@ -23,6 +23,21 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const images = product.images.edges.map(edge => edge.node);
   const currentImage = images[selectedImage] || product.featuredImage;
 
+  const handleShopPayCheckout = async () => {
+    try {
+      // Create a new cart with the item
+      const cart = await createCart();
+      await addLinesToCart(cart.id, [{
+        merchandiseId: selectedVariant,
+        quantity: 1
+      }]);
+      // Redirect to checkout
+      window.location.href = cart.checkoutUrl;
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+    }
+  };
+
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto max-w-7xl">
@@ -125,37 +140,40 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             {/* Add to Cart */}
             <div className="space-y-4">
               <AddToCartButton
-                product={product}
                 variantId={selectedVariant}
                 className="w-full"
               />
               
-              {/* Shop Pay Buy Now */}
+              {/* Shop Pay Buy Now Button */}
               <button
-                onClick={async () => {
-                  try {
-                    // Create a new cart with the item
-                    const cart = await createCart();
-                    await addLinesToCart(cart.id, [{
-                      merchandiseId: selectedVariant,
-                      quantity: 1
-                    }]);
-                    // Redirect to checkout
-                    window.location.href = cart.checkoutUrl;
-                  } catch (error) {
-                    console.error('Error creating checkout:', error);
-                  }
+                onClick={handleShopPayCheckout}
+                className="w-full py-4 rounded-full font-sofia font-medium transition-all duration-200 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-3"
+                style={{
+                  backgroundColor: '#5A31F4',
+                  color: '#FFFFFF'
                 }}
-                className="w-full py-4 px-6 text-lg font-sofia font-bold rounded-full bg-[#5A31F4] text-white hover:bg-[#4925d3] transition-all flex items-center justify-center gap-2"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#4925c7';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#5A31F4';
+                }}
               >
-                <svg className="w-5 h-5" viewBox="0 0 341 151" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M227.297 0C220.448 0 214.896 5.47237 214.896 12.2229V138.778C214.896 145.528 220.448 151 227.297 151H328.599C335.448 151 341 145.528 341 138.778V12.2229C341 5.47237 335.448 0 328.599 0H227.297Z" fill="white"/>
-                  <path d="M278.002 107.5L276.403 113H262.841L266.873 97.5H270.675L267.133 109.5H272.761L276.119 97.5H279.921L276.363 109.5H281.139L284.681 97.5H288.483L284.451 113H270.888L272.488 107.5H278.002Z" fill="#5A31F4"/>
-                  <path d="M290.442 106.75C290.442 104.812 291.192 103.229 292.692 102C294.192 100.75 296.088 100.125 298.379 100.125C299.254 100.125 300.046 100.229 300.754 100.438C301.483 100.625 302.067 100.885 302.504 101.219L301.692 103.719C301.254 103.427 300.723 103.198 300.098 103.031C299.494 102.844 298.879 102.75 298.254 102.75C297.108 102.75 296.192 103.01 295.504 103.531C294.817 104.052 294.473 104.792 294.473 105.75C294.473 106.417 294.692 106.958 295.129 107.375C295.567 107.771 296.223 108.167 297.098 108.562C298.181 109.042 299.098 109.51 299.848 109.969C300.598 110.427 301.16 110.958 301.535 111.562C301.91 112.146 302.098 112.865 302.098 113.719C302.098 115.74 301.306 117.344 299.723 118.531C298.14 119.698 296.098 120.281 293.598 120.281C292.41 120.281 291.358 120.135 290.442 119.844C289.525 119.552 288.796 119.177 288.254 118.719L289.129 116.219C289.65 116.635 290.327 116.979 291.16 117.25C291.994 117.5 292.858 117.625 293.754 117.625C295.004 117.625 295.994 117.354 296.723 116.812C297.473 116.271 297.848 115.521 297.848 114.562C297.848 113.875 297.619 113.323 297.16 112.906C296.723 112.49 296.056 112.073 295.16 111.656C294.077 111.156 293.16 110.677 292.41 110.219C291.66 109.74 291.088 109.198 290.692 108.594C290.317 107.969 290.129 107.229 290.129 106.375C290.129 106.417 290.192 106.552 290.317 106.781C290.379 106.823 290.421 106.812 290.442 106.75Z" fill="#5A31F4"/>
-                </svg>
-                Buy with Shop Pay
+                <span className="text-base">Buy with</span>
+                <Image
+                  src="/shop pay logo image.webp"
+                  alt="Shop Pay"
+                  width={60}
+                  height={24}
+                  className="h-6 w-auto"
+                />
               </button>
               
+              {/* More payment methods */}
+              <p className="text-center text-sm font-sofia text-gray-600 -mt-2">
+                More payment methods
+              </p>
+
               {/* Additional Actions */}
               <div className="flex gap-4">
                 <button

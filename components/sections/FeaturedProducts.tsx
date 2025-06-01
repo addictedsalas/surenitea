@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import ClientWrapper from '@/app/shop/ClientWrapper';
+import Image from 'next/image';
 import { Product } from '@/lib/shopify';
+import AddToCartButton from '@/components/AddToCartButton';
 
 interface FeaturedProductsProps {
   products: Product[];
@@ -49,38 +50,85 @@ export default function FeaturedProducts({
       
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64">
-        <div className="w-full h-full rounded-full" style={{ backgroundColor: '#FFB5A7', opacity: 0.1 }} />
+        <div className="w-full h-full rounded-full" style={{ 
+          background: 'radial-gradient(circle, rgba(255, 203, 164, 0.3) 0%, transparent 70%)',
+          filter: 'blur(40px)'
+        }} />
       </div>
       <div className="absolute bottom-0 left-0 w-96 h-96">
-        <div className="w-full h-full rounded-full" style={{ backgroundColor: '#FFCBA4', opacity: 0.1 }} />
+        <div className="w-full h-full rounded-full" style={{ 
+          background: 'radial-gradient(circle, rgba(255, 181, 167, 0.3) 0%, transparent 70%)',
+          filter: 'blur(60px)'
+        }} />
       </div>
-      
-      <div className="container mx-auto px-4 relative z-10" ref={sectionRef}>
+
+      <div ref={sectionRef} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-recoleta mb-4" style={{ color: 'var(--color-surenitea-700)' }}>
-            {title}
-          </h2>
-          <p className="text-lg font-sofia font-light max-w-2xl mx-auto" style={{ color: 'var(--color-surenitea-600)' }}>
-            {subtitle}
-          </p>
+          <h2 className="text-5xl font-bold mb-4 font-recoleta" style={{ color: 'var(--color-surenitea-700)' }}>{title}</h2>
+          <p className="text-lg max-w-2xl mx-auto font-sofia" style={{ color: 'var(--color-surenitea-600)' }}>{subtitle}</p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {products.map((product, index) => (
-            <div
-              key={product.id}
-              className={`transition-all duration-700 ease-out ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-12'
-              }`}
-              style={{
-                transitionDelay: `${index * 150}ms`
-              }}
-            >
-              <ClientWrapper product={product} />
-            </div>
-          ))}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {products.map((product, index) => {
+            const price = parseFloat(product.priceRange.minVariantPrice.amount);
+            const formattedPrice = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: product.priceRange.minVariantPrice.currencyCode,
+            }).format(price);
+            const firstVariant = product.variants.edges[0]?.node;
+
+            return (
+              <div
+                key={product.id}
+                className={`transition-all duration-700 ease-out ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${index * 150}ms`
+                }}
+              >
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                  <Link href={`/shop/${product.handle}`} className="block">
+                    <div className="relative aspect-square overflow-hidden bg-gray-50">
+                      {product.featuredImage && (
+                        <Image
+                          src={product.featuredImage.url}
+                          alt={product.featuredImage.altText || product.title}
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      )}
+                    </div>
+                  </Link>
+                  <div className="p-6">
+                    <Link href={`/shop/${product.handle}`}>
+                      <h3 className="text-2xl font-bold mb-2 font-recoleta text-surenitea-700 hover:text-coral transition-colors">
+                        {product.title}
+                      </h3>
+                    </Link>
+                    <p className="text-gray-600 mb-4 font-sofia line-clamp-2">
+                      {product.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-surenitea-700">
+                        {formattedPrice}
+                      </span>
+                      {product.availableForSale && firstVariant ? (
+                        <AddToCartButton variantId={firstVariant.id} />
+                      ) : (
+                        <span className="text-gray-400 font-sofia">
+                          Sold Out
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className="text-center">
