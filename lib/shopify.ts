@@ -386,8 +386,8 @@ export async function getProducts(first: number = 20): Promise<Product[]> {
       throw new Error('Failed to fetch products');
     }
 
-    const products = data?.products?.edges?.map((edge: any) => edge.node) || [];
-    return products.map((product: any) => ProductSchema.parse(product));
+    const products = data?.products?.edges?.map((edge: { node: unknown }) => edge.node) || [];
+    return products.map((product: unknown) => ProductSchema.parse(product));
   } catch (error) {
     console.error('Error fetching products:', error);
     throw error;

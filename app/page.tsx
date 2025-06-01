@@ -37,15 +37,7 @@ export default async function HomePage() {
       <Newsletter />
 
       {/* Instagram Gallery Section */}
-      <InstagramGallery 
-        instagramPosts={[
-          // Replace these with actual Instagram post URLs from @surenitea_official
-          // Format: "https://www.instagram.com/p/POST_ID/"
-          "https://www.instagram.com/p/DJ_9BHLOhlJ/",
-          "https://www.instagram.com/p/DJ73te1OUny/",
-          "https://www.instagram.com/p/DJsUpm7OTnB/",
-        ]}
-      />
+      <InstagramGallery />
     </div>
   );
 }

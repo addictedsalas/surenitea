@@ -1,5 +1,4 @@
 import { getProducts } from '@/lib/shopify';
-import ProductCard from '@/components/ProductCard';
 import ClientWrapper from './ClientWrapper';
 
 export default async function ShopPage() {

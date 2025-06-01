@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
             />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-recoleta mb-4" style={{ color: 'var(--color-surenitea-700)' }}>
-            They Love's Us
+            They Love&apos;s Us
           </h2>
           <p className="text-lg font-sofia max-w-2xl mx-auto" style={{ color: 'var(--color-surenitea-600)' }}>
             From classic favorites to modern culinary creations, our menu is designed to tantalize your taste buds. Every dish is made with the freshest ingredients and a whole lot of love.
@@ -72,7 +72,7 @@ export default function TestimonialsSection() {
 
               {/* Testimonial Content */}
               <p className="text-base mb-6 font-sofia" style={{ color: testimonial.textColor }}>
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </p>
 
               {/* User Info */}

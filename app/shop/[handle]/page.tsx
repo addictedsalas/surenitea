@@ -1,10 +1,11 @@
-import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { getProductByHandle } from '@/lib/shopify';
 import AddToCartButton from '@/components/AddToCartButton';
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = await getProductByHandle(params.handle);
+export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
+  const { handle } = await params;
+  const product = await getProductByHandle(handle);
 
   if (!product) {
     notFound();

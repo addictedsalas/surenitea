@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export default function OrderNowSection() {
   return (
     <section className="py-20 bg-gradient-to-b from-peach/10 to-coral/10">
@@ -8,7 +6,7 @@ export default function OrderNowSection() {
 
           <div className="text-center">
             <span className="inline-block bg-surenitea-500 text-white px-4 py-1 rounded-full font-sofia text-xs mb-2">Unidine</span>
-            <h2 className="text-3xl md:text-4xl font-recoleta font-bold mb-2 text-surenitea-700">Don't Wait – Order Now!</h2>
+            <h2 className="text-3xl md:text-4xl font-recoleta font-bold mb-2 text-surenitea-700">Don&apos;t Wait – Order Now!</h2>
             <p className="text-base md:text-lg text-surenitea-600 font-sofia mb-6 max-w-xl mx-auto">
               Fresh ingredients, mouth-watering recipes, and passion for good food delivered to your door or ready for pick-up.
             </p>

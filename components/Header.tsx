@@ -9,7 +9,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { state } = useCart();
-  const cartItemsCount = state.items.reduce((sum: number, item: any) => sum + item.quantity, 0);
+  const cartItemsCount = state.items.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -138,23 +138,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const cart = await createCart();
         cartId = cart.id;
         checkoutUrl = cart.checkoutUrl;
-        dispatch({ type: 'SET_CART', payload: { id: cartId, checkoutUrl: checkoutUrl! } });
+        dispatch({ type: 'SET_CART', payload: { id: cart.id, checkoutUrl: cart.checkoutUrl } });
       }
 
       // Add item to Shopify cart
-      await addLinesToCart(cartId!, [{
-        merchandiseId: item.variantId,
-        quantity: item.quantity,
-      }]);
+      if (cartId) {
+        await addLinesToCart(cartId, [{
+          merchandiseId: item.variantId,
+          quantity: item.quantity,
+        }]);
 
-      // Add item to local state
-      dispatch({
-        type: 'ADD_ITEM',
-        payload: {
-          ...item,
-          id: `${item.variantId}-${Date.now()}`,
-        },
-      });
+        // Add item to local state
+        dispatch({
+          type: 'ADD_ITEM',
+          payload: {
+            ...item,
+            id: `${item.variantId}-${Date.now()}`,
+          },
+        });
+      }
     } catch (error) {
       console.error('Error adding to cart:', error);
       // You might want to show a toast notification here
