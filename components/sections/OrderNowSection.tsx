@@ -1,6 +1,6 @@
 export default function OrderNowSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-peach/10 to-coral/10">
+    <section className="py-20" style={{ backgroundColor: '#FFF5F0' }}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
 

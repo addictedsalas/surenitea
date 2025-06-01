@@ -33,11 +33,12 @@ export default async function HomePage() {
       {/* Order Now Section */}
       <OrderNowSection />
 
+      {/* Instagram Gallery Section */}
+      <InstagramGallery />
+
       {/* Newsletter Section */}
       <Newsletter />
 
-      {/* Instagram Gallery Section */}
-      <InstagramGallery />
     </div>
   );
 }

@@ -15,23 +15,19 @@ export default function FeaturedProducts({
 }: FeaturedProductsProps) {
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Background with gradient and pattern */}
+      {/* Background with gradient and pattern - using explicit colors to prevent dark mode issues */}
       <div className="absolute inset-0" style={{ 
-        background: 'linear-gradient(135deg, var(--color-peach) 0%, var(--color-surenitea-50) 50%, var(--color-coral) 100%)',
-        opacity: 0.1
+        background: 'linear-gradient(135deg, #FFCBA4 0%, #FFF5F0 50%, #FFB5A7 100%)',
+        opacity: 0.15
       }} />
       
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl" style={{ 
-        background: 'var(--color-coral)',
-        opacity: 0.1,
-        transform: 'translate(50%, -50%)'
-      }} />
-      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl" style={{ 
-        background: 'var(--color-surenitea-300)',
-        opacity: 0.1,
-        transform: 'translate(-50%, 50%)'
-      }} />
+      <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
+        <div className="w-full h-full rounded-full" style={{ backgroundColor: 'var(--color-coral)' }} />
+      </div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 opacity-10">
+        <div className="w-full h-full rounded-full" style={{ backgroundColor: 'var(--color-peach)' }} />
+      </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
