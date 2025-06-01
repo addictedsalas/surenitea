@@ -98,11 +98,20 @@ export default function HeroSection({
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 animate-bounce text-white">
+      <button
+        onClick={() => {
+          const nextSection = document.getElementById('featured-products');
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+        className="absolute bottom-8 right-8 md:left-1/2 md:right-auto md:-translate-x-1/2 z-20 animate-bounce text-white cursor-pointer hover:scale-110 transition-transform"
+        aria-label="Scroll to next section"
+      >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
-      </div>
+      </button>
     </section>
   );
 }

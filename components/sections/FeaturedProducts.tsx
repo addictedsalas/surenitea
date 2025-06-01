@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ClientWrapper from '@/app/shop/ClientWrapper';
 import { Product } from '@/lib/shopify';
@@ -13,8 +16,32 @@ export default function FeaturedProducts({
   title = "Featured Collections",
   subtitle = "Discover our carefully curated selection of premium teas from around the world"
 }: FeaturedProductsProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
+    <section id="featured-products" className="py-24 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
       {/* Background with gradient - using a subtle overlay approach */}
       <div className="absolute inset-0" style={{ 
         background: 'linear-gradient(135deg, rgba(255, 203, 164, 0.15) 0%, rgba(255, 245, 240, 0.15) 50%, rgba(255, 181, 167, 0.15) 100%)'
@@ -28,7 +55,7 @@ export default function FeaturedProducts({
         <div className="w-full h-full rounded-full" style={{ backgroundColor: '#FFCBA4', opacity: 0.1 }} />
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10" ref={sectionRef}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-recoleta mb-4" style={{ color: 'var(--color-surenitea-700)' }}>
             {title}
@@ -39,8 +66,20 @@ export default function FeaturedProducts({
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {products.map((product) => (
-            <ClientWrapper key={product.id} product={product} />
+          {products.map((product, index) => (
+            <div
+              key={product.id}
+              className={`transition-all duration-700 ease-out ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{
+                transitionDelay: `${index * 150}ms`
+              }}
+            >
+              <ClientWrapper product={product} />
+            </div>
           ))}
         </div>
 
@@ -49,7 +88,7 @@ export default function FeaturedProducts({
             href="/shop"
             className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-sofia font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-white"
             style={{ 
-              backgroundColor: 'var(--color-coral)'
+              backgroundColor: 'var(--color-surenitea-700)',
             }}
           >
             View All Products
