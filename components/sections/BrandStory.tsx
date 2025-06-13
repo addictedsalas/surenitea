@@ -15,8 +15,8 @@ interface BrandStoryProps {
 export default function BrandStory({
   title = "Our Story",
   paragraphs = [
-    "At Surenitea, we believe that every cup tells a story. Our journey began with a simple mission: to bring the world's finest teas to your doorstep.",
-    "We work directly with tea gardens and farmers to ensure that every leaf is cultivated with care and harvested at the perfect moment. From the misty mountains of Darjeeling to the rolling hills of Ceylon, we source only the best."
+    "SÜRENITEA FARMACY was born from a deeply personal journey. After suffering a life-altering injury over 15 years ago, our founder began a relentless search for relief—one that conventional medicine couldn’t offer. That path led him into the world of natural healing, where plants became both remedy and revelation.",
+    "Through years of exploration—from the rainforests of Southeast Asia to the volcanic soils of the Pacific Islands and the mountains of Oregon—he uncovered the power of ancient botanicals. What started as a personal healing mission evolved into a global pursuit to share these remedies with others."
   ],
   linkText = "Learn More About Us",
   linkHref = "/about",
