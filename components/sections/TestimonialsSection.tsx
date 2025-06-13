@@ -1,33 +1,39 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function TestimonialsSection() {
   const testimonials = [
     {
       id: 1,
-      name: "Larry Alexander",
-      handle: "@larryalexander",
-      content: "Every sip is like a little piece of heaven. I've never tasted anything quite like this before. I'm obsessed! For every special occasion, and it's always a hit!",
+      name: "CRG 100",
+      handle: "Local Guide",
+      content: "Alyza was amazing, so welcoming and friendly! She really made the experience feel special. The vibe at the Kratom bar is fantastic, and you can tell they care about making you feel good. I loved it and will definitely be back!",
       rating: 5,
       bgColor: '#FFCBA4', // Peach/coral from top left logo
-      textColor: '#E97451' // Coral text color
+      textColor: '#E97451', // Coral text color
+      image: '/CRG100Review.png'
     },
     {
       id: 2,
-      name: "Larry Alexander",
-      handle: "@larryalexander",
-      content: "Every sip is like a little piece of heaven. I've never tasted anything quite like this before. I'm obsessed! For every special occasion, and it's always a hit!",
+      name: "Happy Endings of Miami",
+      handle: "24 reviews",
+      content: "Visited Surenitea Wellness Bar in Wynwood it was amazing! The atmosphere was warm and inviting, with soft lighting and a laid-back vibe that makes you feel at home. The staff was friendly and attentive, creating a welcoming space for everyone...",
       rating: 5,
       bgColor: '#3D3D3D', // Dark gray from bottom left logo
-      textColor: '#FFCBA4' // Peach text color
+      textColor: '#FFCBA4', // Peach text color
+      image: '/happyEndingsreview.png'
     },
     {
       id: 3,
-      name: "Larry Alexander",
-      handle: "@larryalexander",
-      content: "Every sip is like a little piece of heaven. I've never tasted anything quite like this before. I'm obsessed! For every special occasion, and it's always a hit!",
+      name: "Jordan Levy",
+      handle: "11 reviews",
+      content: "This place is fantastic. It's beautiful and makes you feel like your in a Pacific Ocean island. The staff are very knowledgeable and helped me pick the best drink for me. I have been drinking Kradom for years and this may be the best product...",
       rating: 5,
       bgColor: '#E97451', // Coral from bottom right logo
-      textColor: '#FFFFFF' // White text color
+      textColor: '#FFFFFF', // White text color
+      image: '/jordanLevyReview.png'
     }
   ];
 
@@ -54,7 +60,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
@@ -78,7 +84,7 @@ export default function TestimonialsSection() {
               {/* User Info */}
               <div className="flex items-center gap-3">
                 <Image
-                  src="/testimonial_placeholder.webp"
+                  src={testimonial.image}
                   alt={testimonial.name}
                   width={48}
                   height={48}
@@ -95,6 +101,22 @@ export default function TestimonialsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Our Reviews Button */}
+        <div className="text-center">
+          <Link
+            href="https://www.google.com/search?sca_esv=3cb799b7ed00e3de&rlz=1C1GEWG_enUS1051US1051&sxsrf=AE3TifNFlUgOjnecA6KJwGEahFe5QzXlyA:1749776211914&q=surenitea+miami&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E5V34WFQx61lskQyE4yAxw3WcPC05R67e4eDVO9pL7ceEilNVR7nKPceR9PQVEvZaCf7TTIUS6XbqCi0ReL8j8QOtSWKZ9-8JsaiSHE2pQ0VLI6G_-abZ7PtEPknv0tCdg3Nkdc%3D&sa=X&ved=2ahUKEwiHxrCsmO2NAxXOwvACHf4fJWgQrrQLegQIGxAA&biw=1920&bih=945"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 rounded-full font-sofia font-bold text-base transition-all duration-200 transform hover:scale-[1.02] hover:bg-[#e55555] shadow-lg"
+            style={{
+              backgroundColor: '#FF6B6B',
+              color: '#FFFFFF'
+            }}
+          >
+            Our Reviews
+          </Link>
         </div>
       </div>
     </section>

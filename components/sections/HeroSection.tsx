@@ -79,7 +79,7 @@ export default function HeroSection({
                 transitionDelay: '200ms'
               }}
             >
-              GREAT TEA. NO BS.
+              SÜRENITEA FARMACY
             </h2>
             <p 
               className={`text-lg text-white/80 drop-shadow-md md:text-xl transition-all duration-1000 ease-out ${
@@ -91,7 +91,7 @@ export default function HeroSection({
                 transitionDelay: '600ms'
               }}
             >
-              Pure ingredients. Honest flavors. Simply exceptional.
+              Discover and Experience nature’s finest ingredients
             </p>
           </div>
         </div>

@@ -14,8 +14,8 @@ interface FeaturedProductsProps {
 
 export default function FeaturedProducts({ 
   products, 
-  title = "Featured Collections",
-  subtitle = "Discover our carefully curated selection of premium teas from around the world"
+  title = "Natures FARMACY",
+  subtitle = "Discover and Experience nature’s finest ingredients"
 }: FeaturedProductsProps) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
